@@ -1,44 +1,39 @@
 #include<stdio.h>
 #include<string.h>
-#include "help.h"
-int main()
-{
-    while(1)
-    {
-        int choice;
-        printf("Select a choice: \n 1.Addition \n 2.Multiplication \n 3.Exit \n");
-        printf("Enter a choice: ");
-        scanf("%d", &choice);
-        if(choice==1)
-        {
-            char unary1[500],unary2[500];
-            printf("Enter two unary no.s: ");
-            scanf("%s %s", unary1,unary2);
-            if(validunary(unary1)==1 && validunary(unary2)==1)
-            {
-                strcat(unary1,unary2);
-                printf("Sum is: %s\n",unary1);
-            }
+
+int isValid(char unary[]){
+    int i = 0;
+    while(unary[i]){
+        if(unary[i]!= '1'){
+            return -1;
         }
-        else if(choice==2)
-        {
-            char unary1[500],unary2[500];
-            printf("Enter two unary no.s: ");
-            scanf("%s %s", unary1,unary2);
-            if(validunary(unary1)==1 && validunary(unary2)==1)
-            {
-                printf("Product is: ");
-                for(int i=0;i<strlen(unary2);i++)
-                {
-                    printf("%s",unary1);
-                }
-                printf("\n");
-            }
+        i++;
+    }
+    return 1;
+}
+
+int main(){
+    int n;
+    char u1[500], u2[500];
+    printf("1) addition\n2) multiplication\n");
+    scanf("%d",&n);
+    if(n == 1) {
+        printf("Enter two unary numbers: ");
+        scanf("%s %s", u1, u2);
+        if(isValid(u1) == 1 && isValid(u2) == 1){
+            strcat(u1, u2);
+            printf("The sum is %s\n", u1);
         }
-        else
-        {
-            printf("Exiting..");
-            break;
+    }
+    else if(n == 2){
+        printf("Enter two unary numbers: ");
+        scanf("%s %s", u1, u2);
+        if(isValid(u1) == 1 && isValid(u2) == 1){
+            printf("The product is: ");
+            for(int i=0; i<strlen(u2); i++){
+                printf("%s", u1);
+            }
+            printf("\n");
         }
     }
     return 0;
